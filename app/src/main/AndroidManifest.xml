@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BitBox">
-        <activity android:name=".BitBoxFragment">
+        <activity android:name=".BitBoxActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
