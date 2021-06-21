@@ -29,15 +29,11 @@ class BitBoxFragment : Fragment() {
     ): View? {
         _binding = FragmentBitBoxBinding.inflate(inflater, container, false)
         val view = binding.root
+        mBitBox = context?.let { BitBox(it) }
         //GridLayoutManager(activity, 3).apply { binding.recyclerView.layoutManager = this }
         binding.recyclerView.layoutManager = GridLayoutManager(activity, 3)
-        binding.recyclerView.adapter = mBitBox?.let { SoundAdapter(it.sounds) }
+        binding.recyclerView.adapter = SoundAdapter(mBitBox!!.sounds)
         return view
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mBitBox = activity?.let { BitBox(it) }
     }
 
     override fun onDestroyView() {
@@ -45,17 +41,18 @@ class BitBoxFragment : Fragment() {
         _binding = null
     }
 
-    private class SoundHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        private lateinit var mBinding: ListItemSoundBinding
-        init{
-            //mBinding.
-        }
+    private class SoundHolder(private val itemBinding: ListItemSoundBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
+
+//        fun bindSound(sound: Sound){
+//            itemBinding.soundBtn.
+//            itemBinding.executePendingBindings()
+//        }
     }
 
     private class SoundAdapter(private val sounds: List<Sound>) : RecyclerView.Adapter<SoundHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SoundHolder {
-            val inflatedView = LayoutInflater.from(parent.context)
-                                             .inflate(R.layout.list_item_sound, parent, false)
+            val inflatedView = ListItemSoundBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return SoundHolder(inflatedView)
         }
 
