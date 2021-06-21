@@ -11,6 +11,10 @@ class BitBox(context: Context) {
     private var assets: AssetManager = context.assets
     val sounds = arrayListOf<Sound>()
 
+    init {
+        loadSounds()
+    }
+
     private fun loadSounds(){
         var soundNames = arrayOf<String>()
 
