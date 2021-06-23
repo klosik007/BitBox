@@ -11,12 +11,6 @@ import com.example.bitbox.databinding.FragmentBitBoxBinding
 import com.example.bitbox.databinding.ListItemSoundBinding
 
 class BitBoxFragment : Fragment() {
-    companion object{
-        fun newInstance(): BitBoxFragment{
-            return BitBoxFragment()
-        }
-    }
-
     private var _binding: FragmentBitBoxBinding? = null
     private val binding get() = _binding!!
 
@@ -44,10 +38,16 @@ class BitBoxFragment : Fragment() {
     private class SoundHolder(private val itemBinding: ListItemSoundBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-//        fun bindSound(sound: Sound){
-//            itemBinding.soundBtn.
-//            itemBinding.executePendingBindings()
-//        }
+        val bitbox = BitBox(itemBinding.root.context)
+
+        init{
+            itemBinding.viewModel = SoundViewModel(bitbox)
+        }
+
+        fun bindSounds(sound: Sound){
+            itemBinding.viewModel.sound(sound)
+            itemBinding.executePendingBindings()
+        }
     }
 
     private class SoundAdapter(private val sounds: List<Sound>) : RecyclerView.Adapter<SoundHolder>() {
@@ -57,7 +57,8 @@ class BitBoxFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: SoundHolder, position: Int) {
-
+            val sound: Sound = sounds[position]
+            holder.bindSounds(sound)
         }
 
         override fun getItemCount(): Int {
