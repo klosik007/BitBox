@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <Button xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout>
+<data>
+    <variable
+        name="viewModel"
+        type="com.example.bitbox.SoundViewModel"
+         />
+</data>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        tools:text="Sound name"
+        android:text="@{viewModel.title}"
         android:id="@+id/soundBtn"
     />
+</layout>
