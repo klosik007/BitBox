@@ -20,7 +20,7 @@ class BitBoxFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBitBoxBinding.inflate(inflater, container, false)
         val view = binding.root
         mBitBox = context?.let { BitBox(it) }
@@ -45,7 +45,7 @@ class BitBoxFragment : Fragment() {
         }
 
         fun bindSounds(sound: Sound){
-            itemBinding.viewModel.sound(sound)
+            itemBinding.viewModel!!.setSound(sound)
             itemBinding.executePendingBindings()
         }
     }
