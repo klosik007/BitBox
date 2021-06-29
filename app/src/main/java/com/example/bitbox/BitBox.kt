@@ -7,7 +7,7 @@ import android.media.SoundPool
 import android.util.Log
 import java.io.IOException
 
-class BitBox(context: Context) {
+open class BitBox(context: Context) {
     private val TAG: String = "BitBox"
     private val SOUNDS_FOLDER = "sample_sounds"
     private val MAX_SOUNDS = 5
@@ -54,6 +54,9 @@ class BitBox(context: Context) {
         if (soundId != null) {
             soundPoolInit.play(soundId, 1.0f, 1.0f, 0, 1, 1.0f)
         }
+    }
 
+    fun clearMemoryFromSounds(){
+        soundPoolInit.release()
     }
 }
