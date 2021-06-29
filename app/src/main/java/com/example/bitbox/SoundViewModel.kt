@@ -3,7 +3,7 @@ package com.example.bitbox
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 
-class SoundViewModel(bitbox: BitBox): BaseObservable(){
+class SoundViewModel(var bitbox: BitBox): BaseObservable(){
     private var sound: Sound? = null
 
     @Bindable
@@ -19,5 +19,9 @@ class SoundViewModel(bitbox: BitBox): BaseObservable(){
     fun setSound(sound: Sound?) {
         this.sound = sound
         notifyChange()
+    }
+
+    fun onButtonClicked() {
+        bitbox.play(sound!!)
     }
 }
