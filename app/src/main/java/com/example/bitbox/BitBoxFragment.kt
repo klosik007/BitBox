@@ -27,12 +27,18 @@ class BitBoxFragment : Fragment() {
         //GridLayoutManager(activity, 3).apply { binding.recyclerView.layoutManager = this }
         binding.recyclerView.layoutManager = GridLayoutManager(activity, 3)
         binding.recyclerView.adapter = SoundAdapter(mBitBox!!.sounds)
+        retainInstance
         return view
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mBitBox?.clearMemoryFromSounds()
     }
 
     private class SoundHolder(private val itemBinding: ListItemSoundBinding) :
