@@ -5,6 +5,7 @@ import android.content.res.AssetFileDescriptor
 import android.content.res.AssetManager
 import android.media.SoundPool
 import android.util.Log
+import com.example.bitbox.databinding.FragmentBitBoxBinding
 import java.io.IOException
 
 open class BitBox(context: Context) {
@@ -48,11 +49,10 @@ open class BitBox(context: Context) {
         sound.soundId = soundId
     }
 
-    fun play(sound: Sound){
+    fun play(sound: Sound, soundRate: Float){
         val soundId: Int? = sound.soundId
-
         if (soundId != null) {
-            soundPoolInit.play(soundId, 1.0f, 1.0f, 0, 1, 1.0f)
+            soundPoolInit.play(soundId, 1.0f, 1.0f, 0, 1, soundRate)
         }
     }
 
