@@ -22,6 +22,6 @@ class SoundViewModel(var bitbox: BitBox): BaseObservable(){
     }
 
     fun onButtonClicked() {
-        bitbox.play(sound!!)
+        bitbox.play(sound!!, 1.0f)
     }
 }
