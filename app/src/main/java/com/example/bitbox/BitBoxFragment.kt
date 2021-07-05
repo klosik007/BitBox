@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +28,20 @@ class BitBoxFragment : Fragment() {
         //GridLayoutManager(activity, 3).apply { binding.recyclerView.layoutManager = this }
         binding.recyclerView.layoutManager = GridLayoutManager(activity, 3)
         binding.recyclerView.adapter = SoundAdapter(mBitBox!!.sounds)
+        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+
+                binding.playbackSpeedText.text = "szybkosc odtwarzania: $progress"
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+            }
+        })
         retainInstance
         return view
     }
